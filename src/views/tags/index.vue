@@ -1,8 +1,8 @@
 <template>
   <div class="page">
-    <Tags :list="list1"></Tags>
-    <div class="pad"></div>
-    <Tags :list="list2"></Tags>
+    <Tags :list="list1" />
+    <div class="pad" />
+    <Tags :list="list2" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   components: {
     Tags
   },
-  data() {
+  data () {
     return {
       list1: Array(3).fill(null).map((_, index) => ({ text: '标签' + (index + 1) })),
       list2: Array(100).fill(null).map((_, index) => ({ text: '标签' + (index + 1) }))

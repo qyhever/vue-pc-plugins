@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <QuickDayPicker v-model="value" style="width: 400px"></QuickDayPicker>
+    <QuickDayPicker v-model="value" style="width: 400px" />
   </div>
 </template>
 
@@ -10,14 +10,14 @@ export default {
   components: {
     QuickDayPicker
   },
-  data() {
+  data () {
     return {
       value: []
       // value: ['2014-09-01', '2018-06-06']
     }
   },
   methods: {
-    onChange(val) {
+    onChange (val) {
       console.log(val)
     }
   }

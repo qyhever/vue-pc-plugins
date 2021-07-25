@@ -3,8 +3,8 @@
  */
 const toString = Object.prototype.toString
 
-function createCheckTypeFn(type) {
-  return function isType(value) {
+function createCheckTypeFn (type) {
+  return function isType (value) {
     return toString.call(value) === `[object ${type}]`
   }
 }
@@ -17,10 +17,10 @@ export const isObject = createCheckTypeFn('Object')
 export const isNumber = createCheckTypeFn('Number')
 export const isDate = createCheckTypeFn('Date')
 
-export function isHtmlElement(node) {
+export function isHtmlElement (node) {
   return node && node.nodeType === Node.ELEMENT_NODE
 }
 
-export function isDefined(val) {
+export function isDefined (val) {
   return val !== undefined && val !== null
 }

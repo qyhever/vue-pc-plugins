@@ -8,25 +8,39 @@
         <Sticky>
           <ul class="navs">
             <li
-              class="nav-item"
               v-for="(item, index) in navs"
               :key="index"
+              class="nav-item"
               :class="{active: activeValue === item.value}"
               @click="onNavItemClick(item.value)"
             >
-              {{item.label}}
+              {{ item.label }}
             </li>
           </ul>
         </Sticky>
-        <div class="profession">职业影响力</div>
-        <div class="answer">答辩文档</div>
-        <div class="channel">通道专家</div>
-        <div class="recommended">推荐学习</div>
+        <div class="profession">
+          职业影响力
+        </div>
+        <div class="answer">
+          答辩文档
+        </div>
+        <div class="channel">
+          通道专家
+        </div>
+        <div class="recommended">
+          推荐学习
+        </div>
       </div>
       <div class="aside">
-        <div class="level">晋升</div>
-        <div class="my">我的成长</div>
-        <div class="study">学习</div>
+        <div class="level">
+          晋升
+        </div>
+        <div class="my">
+          我的成长
+        </div>
+        <div class="study">
+          学习
+        </div>
       </div>
     </div>
   </div>
@@ -38,7 +52,7 @@ export default {
   components: {
     Sticky
   },
-  data() {
+  data () {
     return {
       navs: [
         { label: '职业影响力', value: 'profession' },
@@ -50,7 +64,7 @@ export default {
     }
   },
   methods: {
-    onNavItemClick(value) {
+    onNavItemClick (value) {
       this.activeValue = value
     }
   }

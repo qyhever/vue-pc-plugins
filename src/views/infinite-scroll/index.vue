@@ -6,14 +6,22 @@
         :key="index"
         class="item"
       >
-        <div class="number">{{index + 1}}</div>
+        <div class="number">
+          {{ index + 1 }}
+        </div>
         <img class="image" :src="item.imgurl">
-        <div class="desc">{{item.dissname}}</div>
+        <div class="desc">
+          {{ item.dissname }}
+        </div>
       </li>
     </ul>
-    <p v-show="list.length && isTotalLoaded && currentScrollTop" class="loading-placeholder">没有更多数据了！</p>
-    <p v-show="list.length && isReachBottom" class="loading-placeholder">拼命加载中...</p>
-    <BackTop/>
+    <p v-show="list.length && isTotalLoaded && currentScrollTop" class="loading-placeholder">
+      没有更多数据了！
+    </p>
+    <p v-show="list.length && isReachBottom" class="loading-placeholder">
+      拼命加载中...
+    </p>
+    <BackTop />
   </div>
 </template>
 
@@ -26,16 +34,16 @@ export default {
     BackTop
   },
   mixins: [infiniteScroll],
-  data() {
+  data () {
     return {
       list: []
     }
   },
-  mounted() {
+  mounted () {
     this.query()
   },
   methods: {
-    query() {
+    query () {
       axios({
         url: 'https://qyhever.com/common/disc',
         params: {

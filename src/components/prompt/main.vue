@@ -10,29 +10,31 @@
     :title="title"
   >
     <div v-if="subTitle" class="title">
-      {{subTitle}}
+      {{ subTitle }}
     </div>
-    <div v-if="message" class="content">{{message}}</div>
+    <div v-if="message" class="content">
+      {{ message }}
+    </div>
     <div slot="footer" class="dialog-footer">
       <el-button
         v-show="cancelButtonVisible"
         class="com-button--small"
         :type="cancelButtonType"
-        @click="onCancelClick"
         :loading="canceling"
         size="small"
+        @click="onCancelClick"
       >
-        {{cancelButtonText}}
+        {{ cancelButtonText }}
       </el-button>
-			<el-button
+      <el-button
         v-show="confirmButtonVisible"
         class="com-button--small"
         :type="confirmButtonType"
-        @click="onSubmitClick"
         :loading="submiting"
         size="small"
+        @click="onSubmitClick"
       >
-        {{confirmButtonText}}
+        {{ confirmButtonText }}
       </el-button>
     </div>
   </el-dialog>
@@ -46,7 +48,7 @@ export default {
   components: {
     [Dialog.name]: Dialog
   },
-  data() {
+  data () {
     return {
       visible: false,
       canceling: false,
@@ -65,10 +67,10 @@ export default {
     }
   },
   methods: {
-    close() {
+    close () {
       this.visible = false
     },
-    onCancelClick() {
+    onCancelClick () {
       const ret = this.onCancel()
       if (ret && typeof ret.then === 'function') {
         this.canceling = true
@@ -85,7 +87,7 @@ export default {
         this.visible = false
       }
     },
-    onSubmitClick() {
+    onSubmitClick () {
       const ret = this.onSubmit()
       if (ret && typeof ret.then === 'function') {
         this.submiting = true

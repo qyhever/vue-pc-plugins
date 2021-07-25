@@ -55,6 +55,10 @@ const routes = [
   {
     path: '/infinite-scroll',
     component: () => import('@/views/infinite-scroll')
+  },
+  {
+    path: '/calendar',
+    component: () => import('@/views/calendar')
   }
 ]
 

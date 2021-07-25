@@ -1,12 +1,12 @@
 <template>
   <div>
-    <vue-preview class="slides" :slides="images" @close="onClose"></vue-preview>
+    <vue-preview class="slides" :slides="images" @close="onClose" />
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       images: [
         {
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    onClose() {
+    onClose () {
       console.log('onClose')
     }
   }

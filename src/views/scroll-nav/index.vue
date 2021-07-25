@@ -2,18 +2,24 @@
   <div class="page-wrapper">
     <ul class="navs">
       <li
-        class="nav-item"
         v-for="(item, index) in navs"
         :key="index"
+        class="nav-item"
         :class="{active: activeValue === item.value}"
         @click="onNavItemClick(item.value)"
       >
-        {{item.label}}
+        {{ item.label }}
       </li>
     </ul>
-    <div class="recommended" ref="recommended">recommended</div>
-    <div class="content" ref="content">content</div>
-    <div class="about" ref="about">about</div>
+    <div ref="recommended" class="recommended">
+      recommended
+    </div>
+    <div ref="content" class="content">
+      content
+    </div>
+    <div ref="about" class="about">
+      about
+    </div>
   </div>
 </template>
 
@@ -21,7 +27,7 @@
 import { scrollTo, getScrollTop } from '@/utils/dom'
 import { throttle, minBy } from 'lodash'
 export default {
-  data() {
+  data () {
     return {
       navs: [
         { label: '推荐', value: 'recommended' },
@@ -32,7 +38,7 @@ export default {
       activeValue: 'recommended'
     }
   },
-  mounted() {
+  mounted () {
     this.lastScrollTop = getScrollTop()
     const onScrollThrottled = throttle(this.onScroll, 200)
     window.addEventListener('scroll', onScrollThrottled)
@@ -41,16 +47,16 @@ export default {
     })
   },
   methods: {
-    onNavItemClick(value) {
+    onNavItemClick (value) {
       this.activeValue = value
       scrollTo(window, window.pageYOffset, this.$refs[value].offsetTop - 60, 800)
     },
-    onScroll() {
+    onScroll () {
       console.log('onScroll')
       const els = [
-        {el: this.$refs.recommended, name: 'recommended'},
-        {el: this.$refs.content, name: 'content'},
-        {el: this.$refs.about, name: 'about'}
+        { el: this.$refs.recommended, name: 'recommended' },
+        { el: this.$refs.content, name: 'content' },
+        { el: this.$refs.about, name: 'about' }
       ]
       const viewHeight = window.innerHeight
       const innerEls = els.filter(item => {

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <QuickMonthPicker v-model="value" style="width: 400px"></QuickMonthPicker>
+    <QuickMonthPicker v-model="value" style="width: 400px" />
   </div>
 </template>
 
@@ -10,14 +10,14 @@ export default {
   components: {
     QuickMonthPicker
   },
-  data() {
+  data () {
     return {
       value: []
       // value: ['2014-09', '2018-06']
     }
   },
   methods: {
-    onChange(val) {
+    onChange (val) {
       console.log(val)
     }
   }

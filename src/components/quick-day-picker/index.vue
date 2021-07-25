@@ -8,11 +8,10 @@
     start-placeholder="开始日期"
     end-placeholder="结束日期"
     :picker-options="pickerOptions"
-    @input="onChange"
     v-bind="$attrs"
+    @input="onChange"
     v-on="$listeners"
-  >
-  </el-date-picker>
+  />
 </template>
 
 <script>
@@ -28,13 +27,13 @@ export default {
       default: () => []
     }
   },
-  data() {
+  data () {
     return {
       pickerOptions: {
         shortcuts: [
           {
             text: '今天',
-            onClick(picker) {
+            onClick (picker) {
               const start = new Date()
               const end = new Date()
               picker.$emit('pick', [start, end])
@@ -42,7 +41,7 @@ export default {
           },
           {
             text: '昨天',
-            onClick(picker) {
+            onClick (picker) {
               const start = new Date()
               start.setDate(start.getDate() - 1)
               const end = new Date()
@@ -51,7 +50,7 @@ export default {
           },
           {
             text: '最近3天',
-            onClick(picker) {
+            onClick (picker) {
               const start = new Date()
               start.setDate(start.getDate() - 2)
               const end = new Date()
@@ -60,7 +59,7 @@ export default {
           },
           {
             text: '最近7天',
-            onClick(picker) {
+            onClick (picker) {
               const start = new Date()
               start.setDate(start.getDate() - 6)
               const end = new Date()
@@ -69,7 +68,7 @@ export default {
           },
           {
             text: '最近30天',
-            onClick(picker) {
+            onClick (picker) {
               const start = new Date()
               start.setDate(start.getDate() - 29)
               const end = new Date()
@@ -78,7 +77,7 @@ export default {
           },
           {
             text: '本周',
-            onClick(picker) {
+            onClick (picker) {
               const start = dayjs().day(1).format('YYYY-MM-DD') // 本周一
               const end = new Date()
               picker.$emit('pick', [new Date(start), end])
@@ -86,7 +85,7 @@ export default {
           },
           {
             text: '上周',
-            onClick(picker) {
+            onClick (picker) {
               const start = dayjs().day(-6).format('YYYY-MM-DD') // 上周一
               const end = dayjs().day(0).format('YYYY-MM-DD') // 上周日
               picker.$emit('pick', [new Date(start), new Date(end)])
@@ -94,7 +93,7 @@ export default {
           },
           {
             text: '本月',
-            onClick(picker) {
+            onClick (picker) {
               const start = dayjs().date(1).format('YYYY-MM-DD') // 本月第一天
               const end = new Date()
               picker.$emit('pick', [new Date(start), end])
@@ -102,7 +101,7 @@ export default {
           },
           {
             text: '上月',
-            onClick(picker) {
+            onClick (picker) {
               const startDate = new Date()
               startDate.setMonth(startDate.getMonth() - 1)
               const start = dayjs(startDate).date(1).format('YYYY-MM-DD') // 上月第一天
@@ -116,7 +115,7 @@ export default {
     }
   },
   methods: {
-    onChange(val) {
+    onChange (val) {
       this.$emit('change', val)
     }
   }

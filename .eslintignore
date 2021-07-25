@@ -1,2 +1,4 @@
 node_modules
 public/
+src/components/form
+src/components/form-item

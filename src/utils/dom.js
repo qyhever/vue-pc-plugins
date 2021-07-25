@@ -6,14 +6,14 @@
  * @param  {Number} duration    使用时间
  * @param  {Function} endCallback 完成后回调
  * @example scrollTo(window, window.pageYOffset, 0, 1000)
- */ 
- export function scrollTo(el, from = 0, to, duration = 500, endCallback) {
+ */
+export function scrollTo (el, from = 0, to, duration = 500, endCallback) {
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = (
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      function(callback) {
+      function (callback) {
         return window.setTimeout(callback, 1000 / 60)
       }
     )
@@ -21,7 +21,7 @@
   const difference = Math.abs(from - to)
   const step = Math.ceil(difference / duration * 50)
 
-  function scroll(start, end, step) {
+  function scroll (start, end, step) {
     if (start === end) {
       endCallback && endCallback()
       return
@@ -46,6 +46,6 @@
  * 获取当前 scrollTop
  * @return {String} scrollTop
  */
- export function getScrollTop() {
+export function getScrollTop () {
   return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 }

@@ -7,7 +7,7 @@
         class="nav-item"
       >
         <router-link :to="item.value" class="nav-item-link">
-          {{item.label}}
+          {{ item.label }}
         </router-link>
       </li>
     </ul>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'Home',
-  data() {
+  data () {
     return {
       navs: [
         { label: 'quick-day', value: '/date-picker/quick-day' },
@@ -31,7 +31,8 @@ export default {
         { label: 'drag-table', value: '/drag-table' },
         { label: 'scroll-nav', value: '/scroll-nav' },
         { label: 'sticky-header', value: '/sticky-header' },
-        { label: 'infinite-scroll', value: '/infinite-scroll' }
+        { label: 'infinite-scroll', value: '/infinite-scroll' },
+        { label: 'calendar', value: '/calendar' }
       ]
     }
   }

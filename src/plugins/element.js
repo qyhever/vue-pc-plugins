@@ -8,7 +8,11 @@ import {
   Table,
   TableColumn,
   Button,
-  Image
+  Image,
+  Row,
+  Checkbox,
+  CheckboxButton,
+  CheckboxGroup
 } from 'element-ui'
 
 Vue
@@ -21,3 +25,7 @@ Vue
   .use(TableColumn)
   .use(Button)
   .use(Image)
+  .use(Row)
+  .use(Checkbox)
+  .use(CheckboxButton)
+  .use(CheckboxGroup)

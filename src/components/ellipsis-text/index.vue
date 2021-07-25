@@ -1,21 +1,21 @@
 <template>
   <div class="ellipsis-text">
     <div
+      v-popover:popoverEllipsis
       class="ellipsis-text__content"
       :class="isMultiple ? 'ellipsis-multiple' : 'ellipsis-single'"
       :style="contentStyle"
-      v-popover:popoverEllipsis
     >
-      {{text}}
+      {{ text }}
     </div>
     <el-popover
-      ref="popoverEllipsis"
       v-if="popoverVisible"
+      ref="popoverEllipsis"
       placement="top-start"
       trigger="hover"
       popper-class="ellipsis-text-popover"
     >
-      {{text}}
+      {{ text }}
     </el-popover>
   </div>
 </template>
@@ -45,10 +45,10 @@ export default {
     }
   },
   computed: {
-    isMultiple() {
+    isMultiple () {
       return this.line > 1
     },
-    contentStyle() {
+    contentStyle () {
       const valueMatch = this.lineHeight.match(/\d+\.?\d*/g)
       const unitMatch = this.lineHeight.match(/[a-zA-Z]+/g)
       if (!valueMatch || !unitMatch) {

@@ -1,7 +1,7 @@
 <template>
   <el-select
-    style="width: 360px"
     v-model="value"
+    style="width: 360px"
     clearable
     filterable
     remote
@@ -16,15 +16,15 @@
       v-for="(item, index) in list"
       :key="index"
       :label="item.text"
-      :value="item.text">
-    </el-option>
+      :value="item.text"
+    />
   </el-select>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  data() {
+  data () {
     return {
       loading: false,
       list: [],
@@ -32,7 +32,7 @@ export default {
       value: ''
     }
   },
-  mounted() {
+  mounted () {
     axios({
       url: '/api/mock/users'
     })
@@ -42,10 +42,10 @@ export default {
       })
   },
   methods: {
-    onClear() {
+    onClear () {
       this.list = this.defaultList.slice()
     },
-    remoteMethod(value) {
+    remoteMethod (value) {
       if (!value) {
         this.list = this.defaultList.slice()
         return

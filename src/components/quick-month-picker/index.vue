@@ -8,11 +8,10 @@
     start-placeholder="开始月份"
     end-placeholder="结束月份"
     :picker-options="pickerOptions"
-    @input="onChange"
     v-bind="$attrs"
+    @input="onChange"
     v-on="$listeners"
-  >
-  </el-date-picker>
+  />
 </template>
 
 <script>
@@ -27,19 +26,19 @@ export default {
       default: () => []
     }
   },
-  data() {
+  data () {
     return {
       pickerOptions: {
         shortcuts: [
           {
             text: '本月',
-            onClick(picker) {
+            onClick (picker) {
               picker.$emit('pick', [new Date(), new Date()])
             }
           },
           {
             text: '今年至今',
-            onClick(picker) {
+            onClick (picker) {
               const end = new Date()
               const start = new Date(new Date().getFullYear(), 0)
               picker.$emit('pick', [start, end])
@@ -47,7 +46,7 @@ export default {
           },
           {
             text: '最近六个月',
-            onClick(picker) {
+            onClick (picker) {
               const end = new Date()
               const start = new Date()
               start.setMonth(start.getMonth() - 6)
@@ -59,7 +58,7 @@ export default {
     }
   },
   methods: {
-    onChange(val) {
+    onChange (val) {
       this.$emit('change', val)
     }
   }

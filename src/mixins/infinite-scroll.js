@@ -8,7 +8,7 @@ import { getScrollTop } from '@/utils/dom'
  */
 
 export default {
-  data() {
+  data () {
     return {
       pager: {
         currentPage: 1,
@@ -22,7 +22,7 @@ export default {
       currentScrollTop: 0 // 用来做 没有更多数据 的显示判断，如果数据不满一屏，显示 没有更多数据 不太好
     }
   },
-  mounted() {
+  mounted () {
     if (!isFunc(this.query)) {
       throw new Error('Please declare the query method')
     }
@@ -33,7 +33,7 @@ export default {
     })
   },
   methods: {
-    onScroll() {
+    onScroll () {
       this.currentScrollTop = getScrollTop()
       // 加载中
       if (this.lockScroll) {
@@ -64,7 +64,7 @@ export default {
         this.onReachBottom()
       }
     },
-    onReachBottom() {
+    onReachBottom () {
       console.log('onReachBottom')
       this.lockScroll = true
       this.isReachBottom = true
@@ -72,27 +72,27 @@ export default {
       this.query()
     },
     // 在表单控件变化时调用
-    changeQuery() {
+    changeQuery () {
       this.pager.currentPage = 1
       this.isTotalLoaded = false
       this.query()
     },
     // 通过总数据条数结束
-    endBySize(totalSize) {
+    endBySize (totalSize) {
       this.isTotalLoaded = this.pager.currentPage * this.pager.pageSize >= totalSize
       this.endScroll()
     },
     // 通过总页数结束
-    endByPage(totalPage) {
+    endByPage (totalPage) {
       this.isTotalLoaded = this.pager.currentPage === totalPage
       this.endScroll()
     },
-    endByList(currentLen) {
+    endByList (currentLen) {
       this.isTotalLoaded = currentLen < this.pager.pageSize
       this.endScroll()
     },
     // 自定义方式，自己知道数据全部加载完成
-    endSuccess(currentLen, totalLoaded) {
+    endSuccess (currentLen, totalLoaded) {
       if (typeof totalLoaded !== 'undefined') {
         this.isTotalLoaded = totalLoaded
       } else {
@@ -100,7 +100,7 @@ export default {
       }
       this.endScroll()
     },
-    endScroll() {
+    endScroll () {
       this.$nextTick(() => {
         this.lockScroll = false
         this.isReachBottom = false

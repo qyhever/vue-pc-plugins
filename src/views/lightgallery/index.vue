@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       images: [
         {
@@ -36,16 +36,16 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     const el = document.getElementById('lightgallery')
     this.el = el
     window.lightGallery(el)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     // this.el.destroy()
   },
   methods: {
-    onClose() {
+    onClose () {
       console.log('onClose')
     }
   }

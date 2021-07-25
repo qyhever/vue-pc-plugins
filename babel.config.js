@@ -6,17 +6,17 @@ module.exports = {
     [
       'import',
       {
-        'libraryName': 'lodash',
-        'libraryDirectory': '',
-        'camel2DashComponentName': false
+        libraryName: 'lodash',
+        libraryDirectory: '',
+        camel2DashComponentName: false
       },
       'lodash'
     ],
     [
       'component',
       {
-        'libraryName': 'element-ui',
-        'styleLibraryName': 'theme-chalk'
+        libraryName: 'element-ui',
+        styleLibraryName: 'theme-chalk'
       },
       'element-ui'
     ]

@@ -2,14 +2,15 @@
   <transition name="el-zoom-in-center">
     <div
       v-if="visible"
-      @click.stop="handleClick"
       :style="{
         'right': styleRight,
         'bottom': styleBottom
       }"
-      class="el-backtop">
+      class="el-backtop"
+      @click.stop="handleClick"
+    >
       <slot>
-        <i class="el-icon-caret-top"></i>
+        <i class="el-icon-caret-top" />
       </slot>
     </div>
   </transition>
@@ -42,22 +43,22 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       visible: false
     }
   },
 
   computed: {
-    styleBottom() {
+    styleBottom () {
       return `${this.bottom}px`
     },
-    styleRight() {
+    styleRight () {
       return `${this.right}px`
     }
   },
 
-  mounted() {
+  mounted () {
     this.throttledScrollHandler = throttle(this.onScroll, 300)
 
     window.addEventListener('scroll', this.throttledScrollHandler)
@@ -67,14 +68,14 @@ export default {
   },
 
   methods: {
-    onScroll() {
+    onScroll () {
       this.visible = window.pageYOffset >= this.visibilityHeight
     },
-    handleClick(e) {
+    handleClick (e) {
       this.scrollToTop()
       this.$emit('click', e)
     },
-    scrollToTop() {
+    scrollToTop () {
       const beginTime = Date.now()
       const beginValue = window.pageYOffset
       const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16))

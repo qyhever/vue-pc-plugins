@@ -1,24 +1,28 @@
 <template>
   <div>
     <el-table
-      :data="list"
       ref="dragTable"
+      :data="list"
     >
-      <el-table-column align="center" label="名字" prop="name"/>
-      <el-table-column align="center" label="年龄" prop="age"/>
-      <el-table-column align="center" label="性别" prop="sex"/>
+      <el-table-column align="center" label="名字" prop="name" />
+      <el-table-column align="center" label="年龄" prop="age" />
+      <el-table-column align="center" label="性别" prop="sex" />
       <el-table-column align="center" label="操作">
         <template>
-          <el-button size="small" type="primary" round>编辑</el-button>
-          <el-button size="small" type="primary" round>删除</el-button>
+          <el-button size="small" type="primary" round>
+            编辑
+          </el-button>
+          <el-button size="small" type="primary" round>
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <div>
-      defaultIdList: {{defaultIdList}}
+      defaultIdList: {{ defaultIdList }}
     </div>
     <div>
-      asyncIdList: {{asyncIdList}}
+      asyncIdList: {{ asyncIdList }}
     </div>
   </div>
 </template>
@@ -27,14 +31,14 @@
 import Sortable from 'sortablejs'
 export default {
   name: 'DragTable',
-  data() {
+  data () {
     return {
       list: [],
       defaultIdList: [],
       asyncIdList: []
     }
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
       this.list = [
         {
@@ -106,11 +110,11 @@ export default {
     }, 500)
   },
   methods: {
-    setSort() {
+    setSort () {
       const el = this.$refs.dragTable.$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
       this.sortable = Sortable.create(el, {
         ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
-        setData(dataTransfer) {
+        setData (dataTransfer) {
           // to avoid Firefox bug
           // Detail see : https://github.com/RubaXa/Sortable/issues/1012
           dataTransfer.setData('Text', '')
@@ -138,4 +142,3 @@ export default {
   background: #1890ff !important;
 }
 </style>
-

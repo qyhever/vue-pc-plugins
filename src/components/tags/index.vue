@@ -1,14 +1,16 @@
 <template>
   <div class="tags">
-    <TagList :list="sliceList"></TagList>
+    <TagList :list="sliceList" />
     <el-popover
       v-if="popoverVisible"
       placement="top-start"
       trigger="hover"
       popper-class="tags-popover"
     >
-      <el-tag slot="reference" size="small">...</el-tag>
-      <TagList :list="list"></TagList>
+      <el-tag slot="reference" size="small">
+        ...
+      </el-tag>
+      <TagList :list="list" />
     </el-popover>
   </div>
 </template>
@@ -22,8 +24,8 @@ const TagList = {
       default: () => []
     }
   },
-  render() {
-    const {list} = this
+  render () {
+    const { list } = this
     return (
       <div class="tag-list">
         {list.map((item, index) => (
@@ -50,14 +52,14 @@ export default {
       default: 3
     }
   },
-  data() {
+  data () {
     return {}
   },
   computed: {
-    sliceList() {
+    sliceList () {
       return this.list.slice(0, this.max)
     },
-    popoverVisible() {
+    popoverVisible () {
       return this.list.length > this.max
     }
   },
