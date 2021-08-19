@@ -49,3 +49,19 @@ export function scrollTo (el, from = 0, to, duration = 500, endCallback) {
 export function getScrollTop () {
   return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 }
+
+/**
+ * 元素是否在可视区内
+ * @param {HTMLElement} element dom元素
+ * @param {Number} [y=0] 顶部padding距离
+ * @return {Boolean} 结果
+ */
+export function elementInView (element, y = 0) {
+  const rect = element.getBoundingClientRect()
+
+  const yInView = rect.top < window.innerHeight && rect.bottom > y
+
+  const xInView = rect.left < window.innerWidth && rect.right > 0
+
+  return yInView && xInView
+}
