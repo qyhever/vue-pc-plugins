@@ -6,5 +6,6 @@ import 'lg-thumbnail.js'
 import 'lg-fullscreen.js'
 
 import './element'
+import './component'
 
 Vue.use(VuePreview)
