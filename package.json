@@ -19,7 +19,7 @@
     "lg-thumbnail.js": "^1.2.0",
     "lightgallery.js": "^1.4.0",
     "lodash": "^4.17.20",
-    "nanoid": "^3.3.3",
+    "scroll-into-view-if-needed": "^2.2.29",
     "sortablejs": "^1.13.0",
     "vue": "^2.6.11",
     "vue-preview": "^1.1.3",

@@ -32,7 +32,8 @@ export default {
         { label: 'scroll-nav', value: '/scroll-nav' },
         { label: 'sticky-header', value: '/sticky-header' },
         { label: 'infinite-scroll', value: '/infinite-scroll' },
-        { label: 'calendar', value: '/calendar' }
+        { label: 'calendar', value: '/calendar' },
+        { label: 'amap', value: '/amap' }
       ]
     }
   }

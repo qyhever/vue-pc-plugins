@@ -8,8 +8,9 @@
 </template>
 <script>
 import objectAssign from 'element-ui/src/utils/merge'
-import { minBy } from 'lodash'
-import { elementInView } from '@/utils/dom'
+// import { minBy } from 'lodash'
+// import { elementInView } from '@/utils/dom'
+import scrollIntoView from 'scroll-into-view-if-needed'
 
 export default {
   name: 'ElForm',
@@ -139,34 +140,50 @@ export default {
         callback(true)
       }
       let invalidFields = {}
+      const errors = []
       this.fields.forEach(field => {
         field.validate('', (message, invalidField) => {
           if (message) {
+            errors.push(invalidField)
             valid = false
           }
           invalidFields = objectAssign({}, invalidFields, invalidField)
           if (typeof callback === 'function' && ++count === this.fields.length) {
-            if (this.scrollToFirstError) {
-              const errorNodes = []
-              Object.keys(invalidFields).forEach(propName => {
-                const component = this.fields.find(item => item.prop === propName)
-                const isView = elementInView(component.$el, 60)
-                if (!isView) {
-                  errorNodes.push({
-                    component,
-                    y: component.$el.getBoundingClientRect().y
-                  })
-                }
-              })
-              const minYNode = minBy(errorNodes, node => node.y)
-              if (minYNode) {
-                minYNode.component.scrollToView()
-              }
-            }
+            // if (this.scrollToFirstError) {
+            //   const errorNodes = []
+            //   Object.keys(invalidFields).forEach(propName => {
+            //     const component = this.fields.find(item => item.prop === propName)
+            //     const isView = elementInView(component.$el, 60)
+            //     if (!isView) {
+            //       errorNodes.push({
+            //         component,
+            //         y: component.$el.getBoundingClientRect().y
+            //       })
+            //     }
+            //   })
+            //   const minYNode = minBy(errorNodes, node => node.y)
+            //   if (minYNode) {
+            //     minYNode.component.scrollToView()
+            //   }
+            // }
             callback(valid, invalidFields)
           }
         })
       })
+
+      // 废弃掉以前的 根据 dom 计算距离位置的方式，使用 scroll-into-view-if-needed 库
+      if (scrollToFirstError && errors.length && errors[0]) {
+        Object.keys(errors[0]).forEach(propName => {
+          const component = this.fields.find(item => item.prop === propName)
+          const node = component.$el
+          if (node) {
+            scrollIntoView(node, {
+              scrollMode: 'if-needed',
+              block: 'nearest'
+            })
+          }
+        })
+      }
 
       if (promise) {
         return promise

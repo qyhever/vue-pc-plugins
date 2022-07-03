@@ -59,6 +59,10 @@ const routes = [
   {
     path: '/calendar',
     component: () => import('@/views/calendar')
+  },
+  {
+    path: '/amap',
+    component: () => import('@/views/amap')
   }
 ]
 

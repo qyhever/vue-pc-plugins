@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import {
+  Message,
   DatePicker,
   Tag,
   Popover,
@@ -12,7 +13,8 @@ import {
   Row,
   Checkbox,
   CheckboxButton,
-  CheckboxGroup
+  CheckboxGroup,
+  Input
 } from 'element-ui'
 
 Vue
@@ -29,3 +31,6 @@ Vue
   .use(Checkbox)
   .use(CheckboxButton)
   .use(CheckboxGroup)
+  .use(Input)
+
+Vue.prototype.$message = Message
