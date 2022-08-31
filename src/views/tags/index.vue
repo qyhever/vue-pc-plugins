@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="p-20">
     <Tags :list="list1" />
     <div class="pad" />
     <Tags :list="list2" />

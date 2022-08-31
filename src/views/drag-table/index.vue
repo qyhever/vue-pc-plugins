@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-20">
     <el-table
       ref="dragTable"
       :data="list"

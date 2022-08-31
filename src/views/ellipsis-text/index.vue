@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="p-20">
     <div class="wrapper">
       <EllipsisText :text="text1" bgc="#f2f2f2" />
       <div class="pad" />

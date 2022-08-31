@@ -1,7 +1,153 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import BasicLayout from '@/layouts/basic'
+import BlankLayout from '@/layouts/blank'
+
 Vue.use(VueRouter)
+
+const basicRoutes = [
+  {
+    path: '/home',
+    component: () => import('@/views/home'),
+    meta: {
+      title: '首页'
+    }
+  },
+  {
+    path: '/independent',
+    component: BlankLayout,
+    meta: {
+      title: '自主开发'
+    },
+    children: [
+      {
+        path: '/scroll-nav',
+        component: () => import('@/views/scroll-nav'),
+        meta: {
+          title: 'scroll-nav'
+        }
+      },
+      {
+        path: '/sticky-header',
+        component: () => import('@/views/sticky-header'),
+        meta: {
+          title: 'sticky-header'
+        }
+      },
+      {
+        path: '/infinite-scroll',
+        component: () => import('@/views/infinite-scroll'),
+        meta: {
+          title: 'infinite-scroll'
+        }
+      },
+      {
+        path: '/calendar',
+        component: () => import('@/views/calendar'),
+        meta: {
+          title: 'calendar'
+        }
+      }
+    ]
+  },
+  {
+    path: '/secondary',
+    component: BlankLayout,
+    meta: {
+      title: '二次开发'
+    },
+    children: [
+      {
+        path: '/date-picker/quick-day',
+        component: () => import('@/views/date-picker/quick-day'),
+        meta: {
+          title: 'quick-day'
+        }
+      },
+      {
+        path: '/date-picker/quick-month',
+        component: () => import('@/views/date-picker/quick-month'),
+        meta: {
+          title: 'quick-month'
+        }
+      },
+      {
+        path: '/tags',
+        component: () => import('@/views/tags'),
+        meta: {
+          title: 'tags'
+        }
+      },
+      {
+        path: '/ellipsis-text',
+        component: () => import('@/views/ellipsis-text'),
+        meta: {
+          title: 'ellipsis-text'
+        }
+      },
+      {
+        path: '/remote-select',
+        component: () => import('@/views/remote-select'),
+        meta: {
+          title: 'remote-select'
+        }
+      }
+    ]
+  },
+  {
+    path: '/external',
+    component: BlankLayout,
+    meta: {
+      title: '第三方'
+    },
+    children: [
+      {
+        path: '/vue-preview',
+        component: () => import('@/views/vue-preview'),
+        meta: {
+          title: 'vue-preview'
+        }
+      },
+      {
+        path: '/lightgallery',
+        component: () => import('@/views/lightgallery'),
+        meta: {
+          title: 'lightgallery'
+        }
+      },
+      {
+        path: '/drag-table',
+        component: () => import('@/views/drag-table'),
+        meta: {
+          title: 'drag-table'
+        }
+      }
+    ]
+  }
+]
+
+const blankRoutes = [
+  {
+    path: '/amap',
+    component: () => import('@/views/amap'),
+    meta: {
+      title: 'amap'
+    }
+  },
+  {
+    path: '/amap-ui',
+    component: () => import('@/views/amap-ui'),
+    meta: {
+      title: 'amap-ui'
+    }
+  }
+]
+
+export const menuRoutes = [
+  ...basicRoutes,
+  ...blankRoutes
+]
 
 const routes = [
   {
@@ -9,61 +155,11 @@ const routes = [
     redirect: '/home'
   },
   {
-    path: '/home',
-    component: () => import('@/views/home')
+    path: '/',
+    component: BasicLayout,
+    children: basicRoutes
   },
-  {
-    path: '/date-picker/quick-day',
-    component: () => import('@/views/date-picker/quick-day')
-  },
-  {
-    path: '/date-picker/quick-month',
-    component: () => import('@/views/date-picker/quick-month')
-  },
-  {
-    path: '/tags',
-    component: () => import('@/views/tags')
-  },
-  {
-    path: '/ellipsis-text',
-    component: () => import('@/views/ellipsis-text')
-  },
-  {
-    path: '/remote-select',
-    component: () => import('@/views/remote-select')
-  },
-  {
-    path: '/vue-preview',
-    component: () => import('@/views/vue-preview')
-  },
-  {
-    path: '/lightgallery',
-    component: () => import('@/views/lightgallery')
-  },
-  {
-    path: '/drag-table',
-    component: () => import('@/views/drag-table')
-  },
-  {
-    path: '/scroll-nav',
-    component: () => import('@/views/scroll-nav')
-  },
-  {
-    path: '/sticky-header',
-    component: () => import('@/views/sticky-header')
-  },
-  {
-    path: '/infinite-scroll',
-    component: () => import('@/views/infinite-scroll')
-  },
-  {
-    path: '/calendar',
-    component: () => import('@/views/calendar')
-  },
-  {
-    path: '/amap',
-    component: () => import('@/views/amap')
-  }
+  ...blankRoutes
 ]
 
 const router = new VueRouter({

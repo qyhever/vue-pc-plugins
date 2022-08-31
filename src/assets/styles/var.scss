@@ -1,0 +1,29 @@
+// 全局公共变量、混入方法（直接使用，不用 @import）
+$header-height: 60px;
+$aside-width: 210px;
+$aside-collapse-width: 50px;
+$alert-height: 34px;
+
+$color-page-bg: #f5f7f9;
+// 主色调
+$color-primary: #3464e0;
+// 辅助色（安全、警告、危险）
+$color-success: #16BF78;
+$color-warning: #ffaf20;
+$color-danger: #F94C16;
+// 文字颜色（主要、常规、次要/说明、占位）
+$color-text-primary: #333;
+$color-text-regular: #666;
+$color-text-secondary: #999;
+$color-text-placeholder: #ccc;
+// 线框颜色（一级、二级、三级）
+$border-color-base: #dcdcdc;
+$border-color-light: #e5e7f3;
+$border-color-lighter: #eff3fc;
+// 字体
+$font-size-extra-large: 20px;
+$font-size-large: 18px;
+$font-size-medium: 16px;
+$font-size-base: 14px;
+$font-size-small: 13px;
+$font-size-extra-small: 12px;

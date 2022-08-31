@@ -40,12 +40,17 @@ export default {
     bottom: {
       type: Number,
       default: 60
+    },
+    target: {
+      type: Function,
+      default: null
     }
   },
 
   data () {
     return {
-      visible: false
+      visible: false,
+      el: null
     }
   },
 
@@ -59,33 +64,41 @@ export default {
   },
 
   mounted () {
+    this.el = document.documentElement
+    if (this.target) {
+      this.el = this.target()
+      if (!this.el) {
+        throw new Error(`target is not existed: ${this.target}`)
+      }
+    }
     this.throttledScrollHandler = throttle(this.onScroll, 300)
 
-    window.addEventListener('scroll', this.throttledScrollHandler)
+    this.el.addEventListener('scroll', this.throttledScrollHandler)
     this.$once('hook:beforeDestroy', () => {
-      window.removeEventListener('scroll', this.throttledScrollHandler)
+      this.el.removeEventListener('scroll', this.throttledScrollHandler)
     })
   },
 
   methods: {
     onScroll () {
-      this.visible = window.pageYOffset >= this.visibilityHeight
+      this.visible = this.el.scrollTop >= this.visibilityHeight
     },
     handleClick (e) {
       this.scrollToTop()
       this.$emit('click', e)
     },
     scrollToTop () {
+      const el = this.el
       const beginTime = Date.now()
-      const beginValue = window.pageYOffset
+      const beginValue = el.scrollTop
       const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16))
       const frameFunc = () => {
         const progress = (Date.now() - beginTime) / 500
         if (progress < 1) {
-          window.scrollTo(0, beginValue * (1 - easeInOutCubic(progress)))
+          el.scrollTop = beginValue * (1 - easeInOutCubic(progress))
           rAF(frameFunc)
         } else {
-          window.scrollTo(0, 0)
+          el.scrollTop = 0
         }
       }
       rAF(frameFunc)

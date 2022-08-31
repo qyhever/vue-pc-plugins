@@ -5,7 +5,7 @@
     </div>
     <div class="wrapper">
       <div class="main">
-        <Sticky>
+        <Sticky :sticky-top="60">
           <ul class="navs">
             <li
               v-for="(item, index) in navs"

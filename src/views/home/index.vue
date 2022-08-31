@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-20">
     <ul class="nav-list">
       <li
         v-for="(item, index) in navs"
@@ -33,7 +33,8 @@ export default {
         { label: 'sticky-header', value: '/sticky-header' },
         { label: 'infinite-scroll', value: '/infinite-scroll' },
         { label: 'calendar', value: '/calendar' },
-        { label: 'amap', value: '/amap' }
+        { label: 'amap', value: '/amap' },
+        { label: 'amap-ui', value: '/amap-ui' }
       ]
     }
   }
@@ -43,7 +44,7 @@ export default {
 <style lang="scss" scoped>
   .nav-list {
     width: 400px;
-    margin: 50px auto 0;
+    margin: 0 auto;
   }
   .nav-item {
     padding: 10px 0;

@@ -96,14 +96,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    margin: 0;
-    padding: 0;
-  }
   .page-wrapper {
     padding-top: 60px;
   }
   .navs {
+    z-index: 99;
     position: fixed;
     top: 0;
     width: 100%;

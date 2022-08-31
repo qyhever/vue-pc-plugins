@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="p-20">
     <div class="v-calendar-wrapper">
       <el-row
         type="flex"

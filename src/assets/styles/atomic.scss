@@ -1,0 +1,43 @@
+/**
+ * 原子性 css，更全的使用 tailwind.css
+ */
+ @for $i from 0 through 50 {
+  @if $i % 2 == 0 or $i % 5 == 0 {
+    .p-#{$i} {
+      padding: $i + px;
+    }
+    .pt-#{$i} {
+      padding-top: $i + px;
+    }
+    .pr-#{$i} {
+      padding-right: $i + px;
+    }
+    .pb-#{$i} {
+      padding-bottom: $i + px;
+    }
+    .pl-#{$i} {
+      padding-left: $i + px;
+    }
+    .m-#{$i} {
+      margin: $i + px;
+    }
+    .mt-#{$i} {
+      margin-top: $i + px;
+    }
+    .mr-#{$i} {
+      margin-right: $i + px;
+    }
+    .mb-#{$i} {
+      margin-bottom: $i + px;
+    }
+    .ml-#{$i} {
+      margin-left: $i + px;
+    }
+    .font-size-#{$i} {
+      font-size: $i + px;
+    }
+    .rounded-#{$i} {
+      border-radius: $i + px;
+    }
+  }
+}

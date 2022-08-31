@@ -14,8 +14,14 @@ import {
   Checkbox,
   CheckboxButton,
   CheckboxGroup,
-  Input
+  Input,
+  Menu,
+  Submenu,
+  MenuItem
+  // Scrollbar
 } from 'element-ui'
+
+import Scrollbar from '@/components/scrollbar'
 
 Vue
   .use(DatePicker)
@@ -32,5 +38,9 @@ Vue
   .use(CheckboxButton)
   .use(CheckboxGroup)
   .use(Input)
+  .use(Menu)
+  .use(Submenu)
+  .use(MenuItem)
+  .use(Scrollbar)
 
 Vue.prototype.$message = Message

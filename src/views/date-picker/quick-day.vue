@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="p-20">
     <QuickDayPicker v-model="value" style="width: 400px" />
   </div>
 </template>
