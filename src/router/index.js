@@ -141,6 +141,13 @@ const blankRoutes = [
     meta: {
       title: 'amap-ui'
     }
+  },
+  {
+    path: '/amap-custom',
+    component: () => import('@/views/amap/custom'),
+    meta: {
+      title: 'amap-custom'
+    }
   }
 ]
 
