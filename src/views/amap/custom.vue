@@ -7,7 +7,8 @@
 <script>
 import { random } from 'lodash'
 import asyncLoadScript from '@/utils/async-script'
-import jsonData from '@/data/songzi/data.json'
+import jsonData from '@/data/gongan/data.json'
+// import jsonData from '@/data/songzi/data.json'
 
 const mapPlugins = [
   'CitySearch',
@@ -74,9 +75,9 @@ export default {
         111.60851085684304,
         30.17389903190419
       ])
-      const fillOpacity = Number(String(random(0.2, 0.9)).slice(0, 3))
       console.log('jsonData', jsonData)
       jsonData.forEach(item => {
+        const fillOpacity = Number(String(random(0.2, 0.9)).slice(0, 3))
         console.log('name', item.name)
         const polygon = new AMap.Polygon({
           strokeWeight: 1,
