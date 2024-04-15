@@ -1,0 +1,20 @@
+{
+  "Vue2快速生成模板": {
+    "prefix": ["<", "vue"],
+    "body": [
+      "<template>",
+      "\t<div>",
+      "\t\t$1",
+      "\t</div>",
+      "</template>\n",
+      "<script>",
+      "export default {",
+      "$2",
+      "}",
+      "</script>\n",
+      "<style lang=\"less\" scoped>\n",
+      "</style>",
+    ],
+    "description": "Vue2 quickly template"
+  }
+}
