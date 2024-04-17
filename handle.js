@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 
 const jsonData = fs.readFileSync(
-  path.resolve(__dirname, './src/data/anxiang/geo.json'),
+  path.resolve(__dirname, './src/data/baoan/geo.json'),
   'utf8'
 )
 const obj = JSON.parse(jsonData)
@@ -17,7 +17,7 @@ obj.features.forEach(item => {
   })
 })
 fs.writeFile(
-  path.resolve(__dirname, './src/data/anxiang/data.json'),
+  path.resolve(__dirname, './src/data/baoan/data.json'),
   JSON.stringify(ret, null, 2),
   error => {
     console.log('error', error)

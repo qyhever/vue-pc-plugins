@@ -11,6 +11,10 @@ import songziJsonData from '@/data/songzi/data.json'
 import gonganJsonData from '@/data/gongan/data.json'
 import lixianJsonData from '@/data/lixian/data.json'
 import anxiangJsonData from '@/data/anxiang/data.json'
+// import baoanJsonData from '@/data/baoan/data.json'
+import {
+  transformWgs84ToGcj02
+} from '@/utils/pos'
 
 const mapPlugins = [
   'CitySearch',
@@ -22,6 +26,7 @@ const mapPluginsStr = mapPlugins.map(item => 'AMap.' + item).join(',')
 const url = 'https://webapi.amap.com/maps?v=2.0&key=6a169cffad64fb2322801c076ae7d3ec&plugin=' + mapPluginsStr
 
 let polygons = []
+let texts = []
 let infoWindow = null
 
 function generateInfoWindow (content) {
@@ -107,9 +112,16 @@ export default {
               max(lats) + min(lats),
               2
             )
+            const posList = lngs.map((lng, i) => {
+              return transformWgs84ToGcj02(lng, lats[i])
+              // return [
+              //   lng,
+              //   lats[i]
+              // ]
+            })
             const polygon = new AMap.Polygon({
               strokeWeight: 1,
-              path,
+              path: posList,
               fillOpacity,
               fillColor: fillColor || '#80d8ff',
               strokeColor: strokeColor || '#0091ea',
@@ -119,26 +131,40 @@ export default {
                 centerPosition: [centerLng, centerLat]
               }
             })
+            const text = new AMap.Text({
+              text: item.name.replace('.json', ''),
+              anchor: 'center',
+              style: {
+                'font-size': '10px',
+                background: 'transparent',
+                border: 0
+              },
+              position: [centerLng, centerLat]
+            })
             polygon.on('mouseover', () => {
               const options = polygon.getOptions()
-              const extData = polygon.getExtData()
+              // const extData = polygon.getExtData()
               polygon.setOptions({
                 fillOpacity: add(options.fillOpacity, 0.05)
               })
-              if (!infoWindow) {
-                generateInfoWindow(extData.name)
-                infoWindow && infoWindow.open(map, extData.centerPosition)
-              }
+              console.log('generateInfoWindow: ', generateInfoWindow)
+              console.log('infoWindow: ', infoWindow)
+              // if (!infoWindow) {
+              //   generateInfoWindow(extData.name)
+              //   infoWindow && infoWindow.open(map, extData.centerPosition)
+              // }
             })
             polygon.on('mouseout', () => {
               const options = polygon.getOptions()
               polygon.setOptions({
                 fillOpacity: subtract(options.fillOpacity, 0.05)
               })
-              infoWindow && infoWindow.close()
-              infoWindow = null
+              // infoWindow && infoWindow.close()
+              // infoWindow = null
             })
             polygons.push(polygon)
+            texts.push(text)
+            text.setMap(map)
           })
         })
       }
@@ -147,13 +173,18 @@ export default {
       generatePolygon(songziJsonData, '#ccebc5', '#2b8cbe')
       generatePolygon(lixianJsonData, '#ffb3a7', '#ed5736')
       generatePolygon(anxiangJsonData, '#eacd76', '#a78e44')
+      // generatePolygon(baoanJsonData, '#44cef6', '#177cb0')
       map.add(polygons)
       map.setFitView(polygons)
     },
     onClear () {
       const map = this.map
-      polygons = []
       map.remove(polygons)
+      texts.forEach(text => {
+        text.remove()
+      })
+      polygons = []
+      texts = []
     }
   }
 }
