@@ -2,11 +2,12 @@ const path = require('path')
 const fs = require('fs')
 
 const jsonData = fs.readFileSync(
-  path.resolve(__dirname, './src/data/gongan/geo.json'),
+  path.resolve(__dirname, './src/data/anxiang/geo.json'),
   'utf8'
 )
 const obj = JSON.parse(jsonData)
 const ret = []
+console.log('obj.features.length', obj.features.length)
 obj.features.forEach(item => {
   const name = item.properties.name
   const coordinates = item.geometry.coordinates
@@ -16,7 +17,7 @@ obj.features.forEach(item => {
   })
 })
 fs.writeFile(
-  path.resolve(__dirname, './src/data/gongan/data.json'),
+  path.resolve(__dirname, './src/data/anxiang/data.json'),
   JSON.stringify(ret, null, 2),
   error => {
     console.log('error', error)

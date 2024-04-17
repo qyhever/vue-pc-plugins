@@ -9,6 +9,8 @@ import { random, subtract, add, divide, flattenDeep, max, min } from 'lodash'
 import asyncLoadScript from '@/utils/async-script'
 import songziJsonData from '@/data/songzi/data.json'
 import gonganJsonData from '@/data/gongan/data.json'
+import lixianJsonData from '@/data/lixian/data.json'
+import anxiangJsonData from '@/data/anxiang/data.json'
 
 const mapPlugins = [
   'CitySearch',
@@ -140,8 +142,11 @@ export default {
           })
         })
       }
-      generatePolygon(songziJsonData, '#ccebc5', '#2b8cbe')
+      // 找配色 https://colors.ichuantong.cn/
       generatePolygon(gonganJsonData)
+      generatePolygon(songziJsonData, '#ccebc5', '#2b8cbe')
+      generatePolygon(lixianJsonData, '#ffb3a7', '#ed5736')
+      generatePolygon(anxiangJsonData, '#eacd76', '#a78e44')
       map.add(polygons)
       map.setFitView(polygons)
     },
