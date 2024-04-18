@@ -7,11 +7,13 @@
 <script>
 import { random, subtract, add, divide, flattenDeep, max, min } from 'lodash'
 import asyncLoadScript from '@/utils/async-script'
-import songziJsonData from '@/data/songzi/data.json'
-import gonganJsonData from '@/data/gongan/data.json'
-import lixianJsonData from '@/data/lixian/data.json'
-import anxiangJsonData from '@/data/anxiang/data.json'
-// import baoanJsonData from '@/data/baoan/data.json'
+// import songziJsonData from '@/data/songzi/data.json'
+// import gonganJsonData from '@/data/gongan/data.json'
+// import lixianJsonData from '@/data/lixian/data.json'
+// import anxiangJsonData from '@/data/anxiang/data.json'
+import baoanJsonData from '@/data/baoan/data.json'
+import nanshanJsonData from '@/data/nanshan/data.json'
+import longhuaJsonData from '@/data/longhua/data.json'
 import {
   transformWgs84ToGcj02
 } from '@/utils/pos'
@@ -169,11 +171,13 @@ export default {
         })
       }
       // 找配色 https://colors.ichuantong.cn/
-      generatePolygon(gonganJsonData)
-      generatePolygon(songziJsonData, '#ccebc5', '#2b8cbe')
-      generatePolygon(lixianJsonData, '#ffb3a7', '#ed5736')
-      generatePolygon(anxiangJsonData, '#eacd76', '#a78e44')
-      // generatePolygon(baoanJsonData, '#44cef6', '#177cb0')
+      // generatePolygon(gonganJsonData)
+      // generatePolygon(songziJsonData, '#ccebc5', '#2b8cbe')
+      // generatePolygon(lixianJsonData, '#ffb3a7', '#ed5736')
+      // generatePolygon(anxiangJsonData, '#eacd76', '#a78e44')
+      generatePolygon(baoanJsonData, '#44cef6', '#177cb0')
+      generatePolygon(nanshanJsonData, '#ffb3a7', '#ed5736')
+      generatePolygon(longhuaJsonData, '#eacd76', '#a78e44')
       map.add(polygons)
       map.setFitView(polygons)
     },

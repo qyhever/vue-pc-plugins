@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>download_area</name>
+  <Placemark>
+	<name>南山街道0</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>113.846837,22.499072 113.846602,22.498293 113.845618,22.497384 113.844213,22.496215 113.844588,22.495566 113.843979,22.494787 113.843417,22.495177 113.841543,22.496302 113.841777,22.496951 113.841402,22.497211 113.840793,22.496995 113.839715,22.4976 113.837373,22.499721 113.835124,22.501453 113.835077,22.503357 113.836108,22.50392 113.838404,22.505954 113.83845,22.506819 113.83756,22.507858 113.837982,22.50881 113.839575,22.507642 113.840043,22.50617 113.841543,22.504828 113.843885,22.502145 113.846837,22.499072</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
