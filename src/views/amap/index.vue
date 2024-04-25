@@ -29,7 +29,7 @@ const mapPlugins = [
   'DistrictSearch'
 ]
 const mapPluginsStr = mapPlugins.map(item => 'AMap.' + item).join(',')
-const url = 'https://webapi.amap.com/maps?v=2.0&key=6a169cffad64fb2322801c076ae7d3ec&plugin=' + mapPluginsStr
+const url = 'https://webapi.amap.com/maps?v=2.0&key=9ace730e33248ef1f462160f85445847&plugin=' + mapPluginsStr
 
 function districtSearchFn (value) {
   if (!districtSearchFn.ins) {
