@@ -48,6 +48,13 @@ const basicRoutes = [
         meta: {
           title: 'calendar'
         }
+      },
+      {
+        path: '/large-upload',
+        component: () => import('@/views/large-upload'),
+        meta: {
+          title: 'large-upload'
+        }
       }
     ]
   },

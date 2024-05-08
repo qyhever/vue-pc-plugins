@@ -101,6 +101,7 @@ export default {
 .header-padding {
   width: 100%;
   height: 60px;
+  flex: 0 0 60px;
 }
 .app-main {
   padding-left: 210px;
