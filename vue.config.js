@@ -3,7 +3,7 @@ const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-const publicPath = '/'
+const publicPath = '/vue-pc-plugins'
 const PROT = process.env.PROT || 9000
 module.exports = {
   publicPath,

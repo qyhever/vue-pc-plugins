@@ -8,7 +8,7 @@ import { Message } from 'element-ui'
 
 export const baseURL = {
   development: 'http://localhost:8400/api',
-  production: 'https://qyhever.com:8400/api'
+  production: 'https://qyhever.com/pc/api'
 }[process.env.NODE_ENV]
 
 const codeMessage = {
