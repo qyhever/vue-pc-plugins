@@ -17,7 +17,13 @@ import {
   Input,
   Menu,
   Submenu,
-  MenuItem
+  MenuItem,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Form,
+  FormItem,
+  Dialog
   // Scrollbar
 } from 'element-ui'
 
@@ -42,5 +48,11 @@ Vue
   .use(Submenu)
   .use(MenuItem)
   .use(Scrollbar)
+  .use(Dropdown)
+  .use(DropdownMenu)
+  .use(DropdownItem)
+  .use(Form)
+  .use(FormItem)
+  .use(Dialog)
 
 Vue.prototype.$message = Message

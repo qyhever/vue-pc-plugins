@@ -11,7 +11,7 @@
         </router-link>
       </li>
     </ul>
-    <!-- <el-image src="http://test.qiniu.qyhever.com/null" alt="avatar" /> -->
+    <!-- <el-image src="https://qyhever.oss-cn-beijing.aliyuncs.com/88b4bd4b3300.jpg" alt="avatar" /> -->
   </div>
 </template>
 
