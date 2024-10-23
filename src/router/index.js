@@ -99,6 +99,13 @@ const basicRoutes = [
         meta: {
           title: 'remote-select'
         }
+      },
+      {
+        path: '/select-with-popup-page',
+        component: () => import('@/views/select-with-popup-page'),
+        meta: {
+          title: 'select-with-popup'
+        }
       }
     ]
   },
