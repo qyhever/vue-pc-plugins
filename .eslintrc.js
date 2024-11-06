@@ -33,6 +33,8 @@ module.exports = {
         'max': 1,
         'allowFirstLine': false
       }
-    }]
+    }],
+    'vue/no-v-html': 0,
+    'vue/html-self-closing': 0
   }
 }

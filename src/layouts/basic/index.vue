@@ -83,7 +83,6 @@ export default {
 .basic-layout {
   height: 100%;
   font-size: 14px;
-  background: #F5F7F9;
   display: flex;
   flex-direction: column;
 }
@@ -104,7 +103,9 @@ export default {
   flex: 0 0 60px;
 }
 .app-main {
+  flex: 1;
   padding-left: 210px;
+  background: #F5F7F9;
   transition: padding-left 0.28s;
 }
 // 折叠状态

@@ -1,0 +1,10 @@
+$list: 12, 14, 16, 18, 20, 24, 28;
+ 
+@each $item in $list {
+  // .#{$item} {
+  //   content: $item;
+  // }
+  .ql-snow .ql-picker.ql-size span.ql-picker-label[data-value="#{$item}px"]::before, .ql-snow .ql-picker.ql-size span.ql-picker-item[data-value="#{$item}px"]::before {
+    content: "#{$item}px";
+  }
+}

@@ -136,6 +136,13 @@ const basicRoutes = [
         meta: {
           title: 'drag-table'
         }
+      },
+      {
+        path: '/quill-page',
+        component: () => import('@/views/quill-page'),
+        meta: {
+          title: 'quill-editor'
+        }
       }
     ]
   }

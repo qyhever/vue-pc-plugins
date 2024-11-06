@@ -34,7 +34,8 @@ export default {
         { label: 'infinite-scroll', value: '/infinite-scroll' },
         { label: 'calendar', value: '/calendar' },
         { label: 'amap', value: '/amap' },
-        { label: 'amap-ui', value: '/amap-ui' }
+        { label: 'amap-ui', value: '/amap-ui' },
+        { label: 'quill-editor', value: '/quill-page' }
       ]
     }
   }
