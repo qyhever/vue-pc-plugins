@@ -1,4 +1,8 @@
 const path = require('path')
+const MetaInfoPlugin = require('./build/meta')
+const dayjs = require('dayjs')
+
+const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -107,9 +111,34 @@ module.exports = {
       patterns: [resolve('./src/assets/styles/var.scss')]
     }
   },
+  configureWebpack: () => {
+    return {
+      resolve: {
+        alias: {
+          views: '@/views'
+        }
+      },
+      plugins: [
+        // new MetaInfoPlugin({ filename: 'dist/meta.json' })
+      ]
+    }
+  },
   chainWebpack (config) {
     config.plugins.delete('prefetch')
     config.plugins.delete('preload')
+
+    config.plugin('meta').use(MetaInfoPlugin, [
+      {
+        filename: 'dist/meta.json',
+        now
+      }
+    ])
+
+    config.plugin('define').tap((args) => {
+      // DefinePlugin 设置值 必须 JSON 序列化 或者 使用 双引号 包起来
+      args[0]['process.env'].LOCAL_VERSION = JSON.stringify(now)
+      return args
+    })
 
     // set svg-sprite-loader
     config.module
