@@ -23,13 +23,15 @@ export default {
     }
   },
   created () {
-    this.checkVersion()
-    setInterval(this.checkVersion, 60000) // 每分钟检查一次
+    if (process.env.NODE_ENV !== 'development') {
+      this.checkVersion()
+      setInterval(this.checkVersion, 60000) // 每分钟检查一次
+    }
   },
   methods: {
     async checkVersion () {
       try {
-        const response = await fetch('/meta.json')
+        const response = await fetch(process.env.BASE_URL + 'meta.json')
         const data = await response.json()
         console.log('localVersion: ', localVersion)
         if (data.lastDeployTime !== localVersion) {

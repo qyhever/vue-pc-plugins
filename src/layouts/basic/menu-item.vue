@@ -8,7 +8,7 @@
           :class="{ top: topLevel, ['level-' + level]: true }"
           popper-class="submenu-popper"
         >
-          <template v-slot:title>
+          <template #title>
             <ComSvgIcon v-if="topLevel" :name="item.icon" class="menu-item__icon" />
             <span>{{ item.title }}</span>
           </template>
@@ -16,7 +16,7 @@
         </el-submenu>
         <el-menu-item v-else :index="item.path" :class="{ top: topLevel }">
           <ComSvgIcon v-if="topLevel" :name="item.icon" class="menu-item__icon" />
-          <template v-slot:title>
+          <template #title>
             <span>{{ item.title }}</span>
           </template>
         </el-menu-item>

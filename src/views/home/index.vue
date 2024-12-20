@@ -56,6 +56,7 @@ export default {
     font-weight: 700;
     &:hover {
       text-decoration: underline;
+      color: $color-primary;
     }
   }
 </style>

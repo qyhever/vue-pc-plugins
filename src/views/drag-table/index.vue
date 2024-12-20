@@ -8,7 +8,7 @@
       <el-table-column align="center" label="年龄" prop="age" />
       <el-table-column align="center" label="性别" prop="sex" />
       <el-table-column align="center" label="操作">
-        <template>
+        <template #default>
           <el-button size="small" type="primary" round>
             编辑
           </el-button>

@@ -1,3 +1,4 @@
+/* eslint-disable no-loss-of-precision */
 const PI = 3.1415926535897932384626
 const a = 6378245.0
 const ee = 0.00669342162296594323

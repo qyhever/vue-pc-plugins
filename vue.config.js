@@ -16,11 +16,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: PROT,
-    overlay: {
-      warnings: true,
-      errors: true
-    },
-    before (app) {
+    setupMiddlewares (middlewares, { app }) {
       app.get('/users', (req, res) => {
         if (!req.query.keyword) {
           setTimeout(() => {
@@ -85,6 +81,7 @@ module.exports = {
           ])
         }, 1000)
       })
+      return middlewares
     },
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
@@ -106,10 +103,10 @@ module.exports = {
   },
   pluginOptions: {
     // import global scss variables and mixins
-    'style-resources-loader': {
-      preProcessor: 'scss',
-      patterns: [resolve('./src/assets/styles/var.scss')]
-    }
+    // 'style-resources-loader': {
+    //   preProcessor: 'scss',
+    //   patterns: [resolve('./src/assets/styles/var.scss')]
+    // }
   },
   configureWebpack: () => {
     return {
@@ -156,5 +153,15 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: `@use "@/assets/styles/var.scss" as *;`,
+        // sassOptions: {
+        //   additionalData: `@use "@/assets/styles/var.scss" as *;`
+        // }
+      }
+    }
   }
 }

@@ -145,6 +145,13 @@ const basicRoutes = [
         }
       }
     ]
+  },
+  {
+    path: '/html2pdf',
+    component: () => import('@/views/html2pdf'),
+    meta: {
+      title: 'html2pdf'
+    }
   }
 ]
 

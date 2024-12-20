@@ -27,7 +27,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <template v-slot:footer>
+    <template #footer>
       <div class="dialog-footer">
         <el-button size="small" class="com-button--small com-button--default" @click="close">
           取消

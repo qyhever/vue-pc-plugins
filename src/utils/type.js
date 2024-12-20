@@ -16,6 +16,7 @@ export const isString = createCheckTypeFn('String')
 export const isObject = createCheckTypeFn('Object')
 export const isNumber = createCheckTypeFn('Number')
 export const isDate = createCheckTypeFn('Date')
+export const isBlob = createCheckTypeFn('Blob')
 
 export function isHtmlElement (node) {
   return node && node.nodeType === Node.ELEMENT_NODE

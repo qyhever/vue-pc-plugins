@@ -7,7 +7,7 @@ import { Message } from 'element-ui'
 // import JSONbig from 'json-bigint'
 
 export const baseURL = {
-  development: 'http://localhost:8400/api',
+  development: 'http://localhost:8000',
   production: 'https://qyhever.com/pc/api'
 }[process.env.NODE_ENV]
 
@@ -118,10 +118,10 @@ function requestStart (config, loadingCallback) {
 //   data: [],
 //   msg: '查询成功'
 // }
-function requestThenEnd ({ url, response, origin, loadingCallback, showWarning, warningMsg }) {
+function requestThenEnd ({ response, origin, loadingCallback, showWarning, warningMsg, options }) {
   loadingCallback(false)
   const responseData = response.data
-  if (response.config.responseType === 'blob') {
+  if (options.responseType === 'blob') {
     return response // 返回 axios 源数据，可能需要获取 headers 信息
   }
   // 返回接口源数据，调用处自行处理业务状态逻辑
@@ -148,7 +148,7 @@ function requestThenEnd ({ url, response, origin, loadingCallback, showWarning, 
 }
 
 // 响应异常
-function requestCatchEnd ({ error, loadingCallback, showError, errorMsg, reqConf }) {
+function requestCatchEnd ({ error, loadingCallback, showError, errorMsg, options }) {
   loadingCallback(false)
   if (axios.isCancel(error)) {
     // 取消请求的错误，直接跳过
@@ -159,7 +159,7 @@ function requestCatchEnd ({ error, loadingCallback, showError, errorMsg, reqConf
   const msg = errorMsg || getErrorMsg(error)
   if (showError) {
     Message.closeAll()
-    Message.error(reqConf.url + ' 接口异常，' + msg)
+    Message.error(options.url + ' 接口异常，' + msg)
   }
   if (error.response) {
     const { status, data } = error.response
@@ -193,19 +193,17 @@ const request = async (options = {}) => {
     errorMsg = '',
     ...restOptions
   } = options
-  const { method, url, params, data } = restOptions
-  const reqConf = { method, url, params, data }
   const config = requestStart(restOptions, loadingCallback, loading)
   try {
     const response = await instance(config)
     return requestThenEnd({
-      url,
       response,
       origin,
       loadingCallback,
       showWarning,
       warningMsg,
-      loading
+      loading,
+      options: restOptions
     })
   } catch (error) {
     return requestCatchEnd({
@@ -214,7 +212,7 @@ const request = async (options = {}) => {
       showError,
       errorMsg,
       loading,
-      reqConf
+      options: restOptions
     })
   }
 }

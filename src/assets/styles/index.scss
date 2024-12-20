@@ -1,4 +1,4 @@
-@import './reset.scss';
-@import './atom.scss';
-@import './common.scss';
-@import './quill.scss';
+@forward './reset.scss';
+@forward './atom.scss';
+@forward './common.scss';
+@forward './quill.scss';
