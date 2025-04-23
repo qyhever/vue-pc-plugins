@@ -1,57 +1,82 @@
 <template>
-  <div>
-    <el-tooltip
-      :effect="effect"
-      :placement="placement"
-      :disabled="text.length <= len"
-      popper-class="ellipsis-popper"
-    >
-      <p class="ellipsis-tooltip-text">
-        {{ text }}
-      </p>
-      <div slot="content">
-        <pre class="pre-wrap break-all line-height-1-2">{{ text }}</pre>
+  <el-tooltip
+    :disabled="!tooltipVisible"
+    placement="top"
+  >
+    <template #content>
+      <div style="max-width: 480px; line-height: 1.5;">
+        {{ content }}
       </div>
-    </el-tooltip>
-  </div>
+    </template>
+    <div
+      class="over-flow"
+      :class="{ needHoverStyle: needHoverStyle }"
+      @mouseenter="onMouseEnter"
+    >
+      <span
+        ref="elementRef"
+      >
+        {{ content }}
+      </span>
+    </div>
+  </el-tooltip>
 </template>
 
 <script>
 export default {
   name: 'EllipsisTooltip',
   props: {
-    text: {
+    // 显示内容
+    content: {
       type: String,
       default: ''
     },
-    effect: {
-      type: String,
-      default: 'light'
-    },
-    placement: {
-      type: String,
-      default: 'top'
-    },
-    len: {
-      type: Number,
-      default: 18
+    // 需要鼠标hover高亮字体
+    needHoverStyle: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      tooltipVisible: false
+    }
+  },
+  methods: {
+    onMouseEnter () {
+      if (!this.$refs.elementRef) return
+      const parentWidth = this.$refs.elementRef.parentNode.scrollWidth // 当前元素的父元素宽度
+      const contentWidth = this.$refs.elementRef.scrollWidth // 当前元素的宽度
+      const res = contentWidth > parentWidth
+      this.tooltipVisible = res
     }
   }
+
 }
 </script>
-
 <style lang="scss" scoped>
-.ellipsis-tooltip-text {
-  max-width: 18em;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.over-flow {
   overflow: hidden;
-  line-height: 1.2;
-}
-</style>
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  color: #000;
 
-<style>
-.ellipsis-popper {
-  max-width: 80%;
+  &.needHoverStyle {
+    text-overflow: clip;
+    height: 22px;
+
+    span {
+      display: inline-block;
+      max-width: 100.1%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      color: #4689ff;
+    }
+  }
 }
 </style>

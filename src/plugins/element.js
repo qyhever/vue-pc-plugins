@@ -23,7 +23,8 @@ import {
   DropdownItem,
   Form,
   FormItem,
-  Dialog
+  Dialog,
+  Tooltip
   // Scrollbar
 } from 'element-ui'
 
@@ -54,5 +55,6 @@ Vue
   .use(Form)
   .use(FormItem)
   .use(Dialog)
+  .use(Tooltip)
 
 Vue.prototype.$message = Message

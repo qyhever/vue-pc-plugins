@@ -76,6 +76,9 @@ export default {
   .ellipsis-text__content {
     word-wrap: break-word; // 允许长单词换行到下一行
     word-break: break-all; // 允许在单词内换行
+    &:hover {
+      color: rgb(99, 99, 238);
+    }
   }
   .ellipsis-single {
     white-space: nowrap;

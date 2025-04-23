@@ -4,15 +4,20 @@
       <EllipsisText :text="text1" bgc="#f2f2f2" />
       <div class="pad" />
       <EllipsisText :text="text2" bgc="#f2f2f2" :line="3" />
+      <div class="pad" />
+      <div class="pad" />
+      <EllipsisTooltip :content="text2" need-hover-style />
     </div>
   </div>
 </template>
 
 <script>
 import EllipsisText from '@/components/ellipsis-text'
+import EllipsisTooltip from '@/components/ellipsis-tooltip'
 export default {
   components: {
-    EllipsisText
+    EllipsisText,
+    EllipsisTooltip
   },
   data () {
     return {
@@ -30,6 +35,5 @@ export default {
 }
 .pad {
   height: 12px;
-  background-color: #fff;
 }
 </style>
