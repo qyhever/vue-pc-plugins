@@ -1,23 +1,28 @@
 <template>
   <div class="p-20">
-    <div class="wrapper">
-      <EllipsisText :text="text1" bgc="#f2f2f2" />
-      <div class="pad" />
-      <EllipsisText :text="text2" bgc="#f2f2f2" :line="3" />
+    <div style="width: 400px">
+      <EllipsisTooltip :content="text2" />
       <div class="pad" />
       <div class="pad" />
       <EllipsisTooltip :content="text2" need-hover-style />
+      <ComTooltip :content="text2" need-hover-style />
     </div>
+
+    <t-tooltip content="vue.js是通过数据驱动的，vue.js实例化对象将dom和数据进行绑定，一旦绑定，dom和数据将保持同步，每当数据发生变化，">
+      <div class="parent">
+        <span class="son">vue.js是通过数据驱动的，vue.js实例化对象将dom和数据进行绑定，一旦绑定，dom和数据将保持同步，每当数据发生变化，</span>
+      </div>
+    </t-tooltip>
   </div>
 </template>
 
 <script>
-import EllipsisText from '@/components/ellipsis-text'
 import EllipsisTooltip from '@/components/ellipsis-tooltip'
+import ComTooltip from '@/components/com-tooltip'
 export default {
   components: {
-    EllipsisText,
-    EllipsisTooltip
+    EllipsisTooltip,
+    ComTooltip
   },
   data () {
     return {
@@ -35,5 +40,18 @@ export default {
 }
 .pad {
   height: 12px;
+}
+.parent {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #000;
+  &:hover {
+    color: skyblue;
+  }
+}
+.son {
+  // color: pink;
 }
 </style>

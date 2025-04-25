@@ -45,10 +45,9 @@ export default {
   methods: {
     onMouseEnter () {
       if (!this.$refs.elementRef) return
-      const parentWidth = this.$refs.elementRef.parentNode.scrollWidth // 当前元素的父元素宽度
-      const contentWidth = this.$refs.elementRef.scrollWidth // 当前元素的宽度
-      const res = contentWidth > parentWidth
-      this.tooltipVisible = res
+      const parentWidth = this.$refs.elementRef.parentNode.clientWidth // 当前元素的父元素宽度
+      const contentWidth = this.$refs.elementRef.offsetWidth // 当前元素的宽度
+      this.tooltipVisible = parentWidth <= contentWidth
     }
   }
 
@@ -60,20 +59,8 @@ export default {
   white-space: nowrap;
   word-break: break-all;
   text-overflow: ellipsis;
-  color: #000;
 
   &.needHoverStyle {
-    text-overflow: clip;
-    height: 22px;
-
-    span {
-      display: inline-block;
-      max-width: 100.1%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
     &:hover {
       color: #4689ff;
     }
