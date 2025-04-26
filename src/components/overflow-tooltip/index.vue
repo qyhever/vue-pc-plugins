@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'EllipsisTooltip',
+  name: 'OverflowTooltip',
   props: {
     // 显示内容
     content: {

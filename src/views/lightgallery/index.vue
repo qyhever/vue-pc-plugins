@@ -13,21 +13,22 @@
 </template>
 
 <script>
+const { BASE_URL } = process.env
 export default {
   data () {
     return {
       images: [
         {
-          src: '/images/1.jpg',
-          msrc: '/images/1.jpg',
+          src: BASE_URL + '/images/1.jpg',
+          msrc: BASE_URL + '/images/1.jpg',
           alt: '1',
           title: 'Image 1',
           w: 765,
           h: 574
         },
         {
-          src: '/images/2.jpg',
-          msrc: '/images/2.jpg',
+          src: BASE_URL + '/images/2.jpg',
+          msrc: BASE_URL + '/images/2.jpg',
           alt: '2',
           title: 'Image 2',
           w: 765,

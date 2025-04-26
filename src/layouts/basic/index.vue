@@ -8,7 +8,7 @@
       ref="sidebar"
       :navs="navs"
       :collapse="collapse"
-      @toggleMenu="onMenuToggle"
+      @toggle-menu="onMenuToggle"
     />
     <div id="appMain" class="app-main">
       <router-view />

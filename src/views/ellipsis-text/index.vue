@@ -1,11 +1,10 @@
 <template>
   <div class="p-20">
     <div style="width: 400px">
-      <EllipsisTooltip :content="text2" />
-      <div class="pad" />
-      <div class="pad" />
-      <EllipsisTooltip :content="text2" need-hover-style />
-      <ComTooltip :content="text2" need-hover-style />
+      <OverflowTooltip :content="text2" />
+      <div class="pt-15" />
+      <MultipleOverflowTooltip :content="text2" />
+      <div class="pt-15" />
     </div>
 
     <t-tooltip content="vue.js是通过数据驱动的，vue.js实例化对象将dom和数据进行绑定，一旦绑定，dom和数据将保持同步，每当数据发生变化，">
@@ -17,12 +16,13 @@
 </template>
 
 <script>
-import EllipsisTooltip from '@/components/ellipsis-tooltip'
-import ComTooltip from '@/components/com-tooltip'
+import OverflowTooltip from '@/components/overflow-tooltip'
+import MultipleOverflowTooltip from '@/components/overflow-tooltip/multiple.vue'
+
 export default {
   components: {
-    EllipsisTooltip,
-    ComTooltip
+    OverflowTooltip,
+    MultipleOverflowTooltip
   },
   data () {
     return {
@@ -37,9 +37,6 @@ export default {
 .wrapper {
   width: 400px;
   background-color: #f2f2f2;
-}
-.pad {
-  height: 12px;
 }
 .parent {
   width: 200px;

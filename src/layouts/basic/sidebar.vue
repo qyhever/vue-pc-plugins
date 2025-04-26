@@ -47,7 +47,7 @@ export default {
       return path
     },
     onMenuToggle () {
-      this.$emit('toggleMenu')
+      this.$emit('toggle-menu')
     }
   }
 }
