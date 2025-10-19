@@ -197,6 +197,7 @@ const routes = [
   ...blankRoutes
 ]
 
+console.log('process.env: ', process.env)
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

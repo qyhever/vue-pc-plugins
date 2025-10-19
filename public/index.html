@@ -7,9 +7,17 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script>
-      window._AMapSecurityConfig = {
-        serviceHost: 'http://qyhever.com/_AMapService'
+      var config = {}
+      if ('<%= NODE_ENV %>' === 'development') {
+        config = {
+          securityJsCode: '<%= AMAP_JS_CODE %>'
+        }
+      } else {
+        config = {
+          serviceHost: 'https://qyhever.com/_AMapService'
+        }
       }
+      window._AMapSecurityConfig = config
     </script>
   </head>
   <body>

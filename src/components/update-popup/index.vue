@@ -25,7 +25,7 @@ export default {
   created () {
     if (process.env.NODE_ENV !== 'development') {
       this.checkVersion()
-      setInterval(this.checkVersion, 60000) // 每分钟检查一次
+      setInterval(this.checkVersion, 30000)
     }
   },
   methods: {
@@ -33,8 +33,8 @@ export default {
       try {
         const response = await fetch(process.env.BASE_URL + 'meta.json')
         const data = await response.json()
-        console.log('localVersion: ', localVersion)
-        if (data.lastDeployTime !== localVersion) {
+        console.log('localVersion: ', localVersion, ' metaVersion: ', data.hash)
+        if (data.hash !== localVersion) {
           this.visible = true
         }
       } catch (err) {

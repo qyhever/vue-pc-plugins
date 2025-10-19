@@ -1,13 +1,15 @@
 const path = require('path')
 const MetaInfoPlugin = require('./build/meta')
 const dayjs = require('dayjs')
+const webpack = require('webpack')
+const fs = require('fs')
 
 const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-const publicPath = '/vue-pc-plugins'
+const publicPath = '/vue-pc-plugins/'
 const PROT = process.env.PROT || 9000
 module.exports = {
   publicPath,
@@ -131,12 +133,59 @@ module.exports = {
       }
     ])
 
+    // 添加插件，在编译阶段替换产物中的占位符，兼容 dev/prod
+    // 仅在生产环境注册替换占位符的插件
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('hash-plugin').use(class {
+        apply(compiler) {
+          const RawSource = (compiler.webpack && compiler.webpack.sources && compiler.webpack.sources.RawSource)
+            ? compiler.webpack.sources.RawSource
+            : require('webpack-sources').RawSource
+
+          compiler.hooks.thisCompilation.tap('HashPlugin', (compilation) => {
+            const replaceInAssets = () => {
+              const assets = compilation.assets
+              Object.keys(assets).forEach((filename) => {
+                if (!filename.endsWith('.js')) return
+                const source = assets[filename].source().toString()
+                if (!source.includes('__webpack_hash__')) return
+                const newSource = source.replace(/__webpack_hash__/g, compilation.hash)
+
+                if (compilation.updateAsset) {
+                  // webpack 5
+                  compilation.updateAsset(filename, new RawSource(newSource))
+                } else {
+                  // webpack 4
+                  compilation.assets[filename] = new RawSource(newSource)
+                }
+              })
+            }
+
+            if (compilation.hooks.processAssets) {
+              // webpack 5
+              const stage = compiler.webpack && compiler.webpack.Compilation
+                ? compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE
+                : undefined
+              compilation.hooks.processAssets.tap({ name: 'HashPlugin', stage }, replaceInAssets)
+            } else {
+              // webpack 4
+              compilation.hooks.optimizeAssets.tap('HashPlugin', replaceInAssets)
+            }
+          })
+        }
+      })
+    }
+
     config.plugin('define').tap((args) => {
       // DefinePlugin 设置值 必须 JSON 序列化 或者 使用 双引号 包起来
-      args[0]['process.env'].LOCAL_VERSION = JSON.stringify(now)
+      args[0]['process.env'].LOCAL_VERSION = process.env.NODE_ENV === 'production'
+        ? '"__webpack_hash__"'
+        : JSON.stringify(now)
+      args[0].NODE_ENV = JSON.stringify(process.env.NODE_ENV)
+      args[0].AMAP_JS_CODE = JSON.stringify(process.env.AMAP_JS_CODE)
       return args
     })
-
+    
     // set svg-sprite-loader
     config.module
       .rule('svg')
