@@ -1,7 +1,7 @@
 <template>
   <t-select
     class="input-overflow"
-    :value="modelValue"
+    :value="labels"
     clearable
     :placeholder="placeholder"
     multiple
@@ -13,18 +13,18 @@
       v-for="(item, index) in dict"
       :key="index"
       :label="item.label"
-      :value="item.value"
+      :value="item.label"
     />
     <template #valueDisplay="{ value: dataList }">
       <t-tag
-        v-if="dataList && dataList[0]"
+        v-if="dataList && dataList.length"
         closable
         class="mr-4 mb-4"
         max-width="4em"
-        :title="dataList[0].label"
-        @close="onDelete(dataList[0])"
+        :title="getDataList(dataList)[0].label"
+        @close="onDelete()"
       >
-        {{ dataList[0].label }}
+        {{ getDataList(dataList)[0].label }}
       </t-tag>
     </template>
     <template #collapsedItems="{ value: valueList, count }">
@@ -51,12 +51,16 @@
 <script>
 export default {
   name: 'SelectWithPopup',
-  model: {
-    prop: 'modelValue',
-    event: 'update:modelValue'
-  },
+  // model: {
+  //   prop: 'values',
+  //   event: 'update:values'
+  // },
   props: {
-    modelValue: {
+    values: {
+      type: Array,
+      default: () => []
+    },
+    labels: {
       type: Array,
       default: () => []
     },
@@ -70,19 +74,67 @@ export default {
       default: () => []
     }
   },
+  computed: {
+    optionList () {
+      if (!this.dict.length && this.labels.length) {
+        return this.labels.map((label, index) => ({
+          label,
+          value: this.values[index]
+        }))
+      }
+      return this.dict.map(item => ({
+        label: item.label,
+        value: item.value
+      }))
+    }
+  },
   methods: {
-    onChange (val) {
-      this.$emit('update:modelValue', val)
-      this.$emit('select-change', val)
+    onChange (labs) {
+      const items = labs.map(name => {
+        return this.optionList.find(item => item.label === name)
+      }).filter(Boolean)
+      this.$emit('update:values', items.map(item => item.value))
+      this.$emit('update:labels', labs)
+      this.$emit('select-change', items)
     },
     onDelete (row) {
-      const ret = this.modelValue.filter(id => id !== row.value)
-      this.$emit('update:modelValue', ret)
-      this.$emit('select-change', ret)
+      let vals = []
+      let labs = []
+      let items = []
+      if (row) {
+        this.labels.forEach(name => {
+          if (name !== row.label) {
+            const current = this.optionList.find(item => item.label === name)
+            labs.push(name)
+            if (current) {
+              vals.push(current.value)
+              items.push(current)
+            }
+          }
+        })
+      } else {
+        vals = this.values.slice(1)
+        labs = this.labels.slice(1)
+        items = labs.map(name => {
+          return this.optionList.find(item => item.label === name)
+        }).filter(Boolean)
+      }
+      this.$emit('update:values', vals)
+      this.$emit('update:labels', labs)
+      this.$emit('select-change', items)
     },
-    getTagList (valueList) {
-      return valueList.map(id => {
-        return this.dict.find(item => item.value === id)
+    getDataList (rows) {
+      const ret = rows.map(item => {
+        return {
+          label: item.label || item.value,
+          value: item.value
+        }
+      })
+      return ret.filter(Boolean)
+    },
+    getTagList (labelList) {
+      return labelList.map(name => {
+        return this.optionList.find(item => item.label === name)
       }).filter(Boolean)
     }
   }

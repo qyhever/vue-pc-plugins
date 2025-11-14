@@ -1,7 +1,14 @@
 <template>
   <div class="p-20">
     <div style="width: 200px;">
-      <SelectWithPopup v-model="selected" :dict="dict" />
+      <SelectWithPopup
+        :values.sync="valueList"
+        :labels.sync="labelList"
+        :dict="dict"
+      />
+      <div>
+        {{ showSelected }}
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +21,9 @@ export default {
   },
   data () {
     return {
-      selected: [],
+      valueList: ['a', 'b', 'c'],
+      labelList: ['张伟', '刘洋', '王芳'],
+      selectList: [],
       dict: [
         { label: '张伟', value: 'a' },
         { label: '刘洋', value: 'b' },
@@ -23,6 +32,17 @@ export default {
         { label: '朱迪', value: 'e' },
         { label: '兰阳', value: 'f' }
       ]
+    }
+  },
+  computed: {
+    showSelected () {
+      const selectList = this.valueList.map((id, index) => {
+        return {
+          label: this.labelList[index],
+          value: id
+        }
+      })
+      return JSON.stringify(selectList, null, 2)
     }
   }
 }
