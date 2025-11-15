@@ -106,6 +106,13 @@ const basicRoutes = [
         meta: {
           title: 'select-with-popup'
         }
+      },
+      {
+        path: '/remote-staff-select-page',
+        component: () => import('@/views/remote-staff-select-page'),
+        meta: {
+          title: 'remote-staff-select'
+        }
       }
     ]
   },

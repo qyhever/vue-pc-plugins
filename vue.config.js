@@ -137,7 +137,7 @@ module.exports = {
     // 仅在生产环境注册替换占位符的插件
     if (process.env.NODE_ENV === 'production') {
       config.plugin('hash-plugin').use(class {
-        apply(compiler) {
+        apply (compiler) {
           const RawSource = (compiler.webpack && compiler.webpack.sources && compiler.webpack.sources.RawSource)
             ? compiler.webpack.sources.RawSource
             : require('webpack-sources').RawSource
@@ -185,7 +185,7 @@ module.exports = {
       args[0].AMAP_JS_CODE = JSON.stringify(process.env.AMAP_JS_CODE)
       return args
     })
-    
+
     // set svg-sprite-loader
     config.module
       .rule('svg')
@@ -206,7 +206,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: `@use "@/assets/styles/var.scss" as *;`,
+        prependData: '@use "@/assets/styles/var.scss" as *;'
         // sassOptions: {
         //   additionalData: `@use "@/assets/styles/var.scss" as *;`
         // }

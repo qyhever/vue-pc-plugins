@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     onChange (labs) {
+      console.log('labs: ', labs)
       const items = labs.map(name => {
         return this.optionList.find(item => item.label === name)
       }).filter(Boolean)
