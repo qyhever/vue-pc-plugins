@@ -31,7 +31,7 @@ export default {
   methods: {
     async checkVersion () {
       try {
-        const response = await fetch(process.env.BASE_URL + 'meta.json')
+        const response = await fetch(process.env.BASE_URL + 'meta.json?t=' + Date.now())
         const data = await response.json()
         console.log('localVersion: ', localVersion, ' metaVersion: ', data.hash)
         if (data.hash !== localVersion) {
