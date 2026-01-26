@@ -159,6 +159,13 @@ const basicRoutes = [
     meta: {
       title: 'html2pdf'
     }
+  },
+  {
+    path: '/computed-form',
+    component: () => import('@/views/computed-form'),
+    meta: {
+      title: 'computed-form'
+    }
   }
 ]
 

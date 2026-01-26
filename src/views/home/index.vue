@@ -35,7 +35,8 @@ export default {
         { label: 'calendar', value: '/calendar' },
         { label: 'amap', value: '/amap' },
         { label: 'amap-ui', value: '/amap-ui' },
-        { label: 'quill-editor', value: '/quill-page' }
+        { label: 'quill-editor', value: '/quill-page' },
+        { label: 'computed-form', value: '/computed-form' }
       ]
     }
   }
